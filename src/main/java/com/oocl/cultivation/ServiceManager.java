@@ -7,9 +7,10 @@ import com.oocl.cultivation.Car;
 import com.oocl.cultivation.ParkingBoy;
 import com.oocl.cultivation.ParkingLot;
 
-public class ServiceManager extends ParkingBoy {
+public class ServiceManager implements Parking {
 
 	private ParkingLot parkingLot;
+	protected String lastErrorMessage;
 
 	private List<ParkingBoy> parkingBoys = new ArrayList<>();
 
@@ -21,6 +22,10 @@ public class ServiceManager extends ParkingBoy {
 		this.parkingLot = parkingLot;
 	}
 
+	public String getLastErrorMessage() {
+		return lastErrorMessage;
+	}
+	
 	public ParkingTicket park(ParkingLot parkingLot, Car car) {
 		if (parkingLot != this.parkingLot) {
 			lastErrorMessage = "This parking lot dont belong with you";

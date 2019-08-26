@@ -155,6 +155,21 @@ class ParkingBoyFacts {
 	}
 
 	@Test
+	void should__park_cars_to_first_parking_lot_if_first_parking_lot_is_enough_position_when_park_given_two_parking_lot_capacity_is_1() {
+		final int capacity = 1;
+		ParkingLot parkingLot1 = new ParkingLot(capacity);
+		ParkingLot parkingLot2 = new ParkingLot(capacity);
+		List<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
+		parkingLots.add(parkingLot1);
+		parkingLots.add(parkingLot2);
+		ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+		
+		 parkingBoy.park(new Car());
+		
+		assertEquals(0,parkingLot1.getAvailableParkingPosition());
+	}
+	
+	@Test
 	void should__park_cars_to_second_parking_lot_if_first_parking_lot_is_not_enough_position() {
 		final int capacity = 1;
 		ParkingLot parkingLot1 = new ParkingLot(capacity);
@@ -183,21 +198,6 @@ class ParkingBoyFacts {
 		parkingBoy.park(new Car());
 		parkingBoy.park(new Car());
 		assertEquals("The parking lot is full.", parkingBoy.getLastErrorMessage());
-	}
-
-	@Test
-	void should_park_cars_to_max_capacity_parking_lot_of_parkingLot_list() {
-		final int capacity1 = 1;
-		final int capacity2 = 2;
-		ParkingLot parkingLot1 = new ParkingLot(capacity1);
-		ParkingLot parkingLot2 = new ParkingLot(capacity2);
-		List<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
-		parkingLots.add(parkingLot1);
-		parkingLots.add(parkingLot2);
-		SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
-
-		ParkingTicket parkingTicket = smartParkingBoy.park(new Car());
-		assertNotNull(parkingTicket);
 	}
 
 	@Test
