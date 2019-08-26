@@ -16,20 +16,21 @@ public class SmartParkingBoy extends ParkingBoy {
 	}
 
 	public ParkingLot getMaxCapacityParkingLot(List<ParkingLot> parkingLots) {
-		ParkingLot parkingLot = new ParkingLot();
-		int maxCapacity = 0;
+		ParkingLot parkingLot = null;
+		int maxCapacity = -1;
 		for (ParkingLot parkLot : parkingLots) {
 			if (parkLot.getAvailableParkingPosition() > maxCapacity) {
 				maxCapacity = parkLot.getAvailableParkingPosition();
 				parkingLot = parkLot;
 			}
+			
 		}
 		return parkingLot;
 	}
 
 	@Override
 	public ParkingTicket park(Car car) {
-		ParkingLot parkingLot = getMaxCapacityParkingLot(super.parkingLots);
+		ParkingLot parkingLot = getMaxCapacityParkingLot(parkingLots);
 		ParkingTicket ticket = parkingLot.park(car);
 		if (ticket != null) {
 			lastErrorMessage = null;

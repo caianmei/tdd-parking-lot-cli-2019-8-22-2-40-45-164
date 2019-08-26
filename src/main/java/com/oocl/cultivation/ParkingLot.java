@@ -23,6 +23,7 @@ public class ParkingLot {
 	    }
 
 		public ParkingTicket park(Car car) {
+			System.out.println(getAvailableParkingPosition());
 			if (getAvailableParkingPosition() < 1) {
 				return null;
 			}

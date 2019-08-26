@@ -1,5 +1,6 @@
 package com.oocl.cultivation.test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.ArrayList;
@@ -30,4 +31,17 @@ public class SmartParkingBoyFacts {
 		assertNotNull(parkingTicket);
 	}
 
+	@Test
+	void should_get_message_if_there_is_not_enough_position_when_smart_parking_boy_park() {
+		ParkingLot parkingLot1 = new ParkingLot(0);
+		ParkingLot parkingLot2 = new ParkingLot(0);
+		List<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
+		parkingLots.add(parkingLot1);
+		parkingLots.add(parkingLot2);
+		SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+
+		smartParkingBoy.park(new Car());
+
+		assertEquals("The parking lot is full.", smartParkingBoy.getLastErrorMessage());
+	}
 }
