@@ -199,15 +199,29 @@ class ParkingBoyFacts {
 		ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
 		Car car = new Car();
 		
-		ParkingTicket ticket =  parkingBoy.park(car);		
-		Car fetched = parkingBoy.fetch(null);
+		ParkingTicket ticket =  parkingBoy.park(car);	
 		
-		assertNotNull(ticket);
-		assertNull(fetched);
+		assertNull(parkingBoy.fetch(null));
+		assertSame(car, parkingBoy.fetch(ticket));
 	}
 	
 	@Test
-	void should__park_cars_to_second_parking_lot_if_first_parking_lot_is_not_enough_position() {
+	void should_query_message_once_ticket_is_not_provided_when_parking_boy_fetch_given_two_parking_lot_capacity_is_1() {
+		final int capacity = 1;
+		ParkingLot parkingLot1 = new ParkingLot(capacity);
+		ParkingLot parkingLot2 = new ParkingLot(capacity);
+		List<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
+		parkingLots.add(parkingLot1);
+		parkingLots.add(parkingLot2);
+		ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+		
+		parkingBoy.fetch(null);
+
+		assertEquals("Please provide your parking ticket.", parkingBoy.getLastErrorMessage());
+	}
+	
+	@Test
+	void should_park_cars_to_second_parking_lot_if_first_parking_lot_is_not_enough_position() {
 		final int capacity = 1;
 		ParkingLot parkingLot1 = new ParkingLot(capacity);
 		ParkingLot parkingLot2 = new ParkingLot(capacity);
@@ -222,7 +236,7 @@ class ParkingBoyFacts {
 	}
 
 	@Test
-	void should__not_park_cars_to_all_parking_lot_if_all_parking_lot_is_not_enough_position() {
+	void should_not_park_cars_to_all_parking_lot_if_all_parking_lot_is_not_enough_position() {
 		final int capacity = 1;
 		ParkingLot parkingLot1 = new ParkingLot(capacity);
 		ParkingLot parkingLot2 = new ParkingLot(capacity);
