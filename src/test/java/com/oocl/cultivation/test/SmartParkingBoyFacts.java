@@ -10,7 +10,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.oocl.cultivation.Car;
-import com.oocl.cultivation.ParkingBoy;
 import com.oocl.cultivation.ParkingLot;
 import com.oocl.cultivation.ParkingTicket;
 import com.oocl.cultivation.SmartParkingBoy;
@@ -64,13 +63,12 @@ public class SmartParkingBoyFacts {
 		assertEquals(3, parkingLot2.getAvailableParkingPosition());
 		assertEquals(2, parkingLot1.getAvailableParkingPosition());
 	}
+	
 	@Test
-	void should_get_message_if_there_is_not_enough_position_when_smart_parking_boy_park() {
-		ParkingLot parkingLot1 = new ParkingLot(0);
-		ParkingLot parkingLot2 = new ParkingLot(0);
+	void should_get_message_if_there_is_not_enough_position_when_smart_parking_boy_park_car() {
+		ParkingLot parkingLot = new ParkingLot(0);
 		List<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
-		parkingLots.add(parkingLot1);
-		parkingLots.add(parkingLot2);
+		parkingLots.add(parkingLot);
 		SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
 
 		smartParkingBoy.park(new Car());
