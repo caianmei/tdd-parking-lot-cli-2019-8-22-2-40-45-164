@@ -4,9 +4,6 @@ import com.oocl.cultivation.Car;
 import com.oocl.cultivation.ParkingBoy;
 import com.oocl.cultivation.ParkingLot;
 import com.oocl.cultivation.ParkingTicket;
-import com.oocl.cultivation.ServiceManager;
-import com.oocl.cultivation.SmartParkingBoy;
-import com.oocl.cultivation.SuperSmartParkingBoy;
 
 import org.junit.jupiter.api.Test;
 
