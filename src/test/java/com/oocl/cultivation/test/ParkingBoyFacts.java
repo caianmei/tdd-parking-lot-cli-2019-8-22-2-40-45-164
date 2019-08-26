@@ -170,7 +170,7 @@ class ParkingBoyFacts {
 	}
 	
 	@Test
-	void should__park_and_fetch_cars_to_first_parking_lot_if_first_parking_lot_is_enough_position_when_park_given_two_parking_lot_capacity_is_1() {
+	void should_park_and_fetch_cars_to_first_parking_lot_if_first_parking_lot_is_enough_position_when_park_given_two_parking_lot_capacity_is_1() {
 		final int capacity = 1;
 		ParkingLot parkingLot1 = new ParkingLot(capacity);
 		ParkingLot parkingLot2 = new ParkingLot(capacity);
@@ -186,6 +186,24 @@ class ParkingBoyFacts {
 		assertNotNull(ticket);
 		assertEquals(car, fetched);
 		
+	}
+	
+	@Test
+	void should_not_fetch_any_car_once_ticket_is_wrong_when_parking_boy_fetch_given_two_parking_lot_capacity_is_1(){
+		final int capacity = 1;
+		ParkingLot parkingLot1 = new ParkingLot(capacity);
+		ParkingLot parkingLot2 = new ParkingLot(capacity);
+		List<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
+		parkingLots.add(parkingLot1);
+		parkingLots.add(parkingLot2);
+		ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+		Car car = new Car();
+		
+		ParkingTicket ticket =  parkingBoy.park(car);		
+		Car fetched = parkingBoy.fetch(null);
+		
+		assertNotNull(ticket);
+		assertNull(fetched);
 	}
 	
 	@Test
