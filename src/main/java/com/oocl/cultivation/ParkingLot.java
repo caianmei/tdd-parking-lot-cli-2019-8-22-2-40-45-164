@@ -8,7 +8,7 @@ import com.oocl.cultivation.ParkingTicket;
 
 public class ParkingLot {
 	  private final int capacity;
-	    private Map<ParkingTicket, Car> cars = new HashMap<>();
+	    public Map<ParkingTicket, Car> cars = new HashMap<>();
 
 	    public ParkingLot() {
 	        this(10);
@@ -32,7 +32,7 @@ public class ParkingLot {
 			return parkingTicket;
 		}
 
-		public Car fetch(ParkingTicket ticket) {		
+		public Car fetch(ParkingTicket ticket) {	
 			if (ticket.getIsUse()) {
 				return null;
 			}		

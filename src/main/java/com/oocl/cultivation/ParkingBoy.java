@@ -47,6 +47,9 @@ public class ParkingBoy {
 		Car car = new Car();
 		for (ParkingLot parkingLot : parkingLots) {
 			car = parkingLot.fetch(ticket);
+			if (car != null) {
+				break;
+			}
 		}
 		if (car == null) {
 			lastErrorMessage = "Unrecognized parking ticket.";
